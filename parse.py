@@ -12,5 +12,6 @@ for idx, a in enumerate(all_links):
     if matches:
         epn = matches[0]
         filename = re.sub(IS_EPISODE, 'Episodio ' + epn.zfill(3), a.text) + '.avi'
+        filename = re.sub(r'[\\?]', '', filename)
         url = a.get('href')
         print(idx, filename, url)
