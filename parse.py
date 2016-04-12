@@ -10,4 +10,6 @@ all_links = parser.findall('//a')  # list of lxml.html.HtmlElement objects
 for idx, a in enumerate(all_links):
     matches = IS_EPISODE.findall(a.text)
     if matches:
-        print(idx, matches, a.text, a.get('href'))
+        epn = matches[0]
+        print(idx, epn, epn.zfill(3), a.text, a.get('href'))
+        print re.sub(IS_EPISODE, 'Episodio ' + epn.zfill(3), a.text) + '.avi'
