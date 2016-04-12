@@ -1,5 +1,6 @@
 import re
 import lxml.html
+import urllib
 
 IS_EPISODE = re.compile('Episodio (\d{1,3})')
 
@@ -14,4 +15,5 @@ for idx, a in enumerate(all_links):
         filename = re.sub(IS_EPISODE, 'Episodio ' + epn.zfill(3), a.text) + '.avi'
         filename = re.sub(r'[\\?]', '', filename)
         url = a.get('href')
-        print(idx, filename, url)
+        print(idx, filename, url, '...')
+        urllib.urlretrieve(url, 'downloads/' + filename)
